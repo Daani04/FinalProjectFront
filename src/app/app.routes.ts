@@ -15,20 +15,22 @@ import { DataMapComponent } from './views/data-map/data-map.component';
 //MODIFICAR, LAS RUTAS NO ESTAN PROTEGIDAS, AÑADIR --> canActivate: [AuthGuard] 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+    { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent,  },
     { path: 'register', component: RegisterComponent},
-    { path: 'warehouse', component: WarehouseComponent, canActivate: [AuthGuard] },
-    { path: 'graphics', component: GraphicsComponent, canActivate: [AuthGuard] },
-    { path: 'product_data/:id', component: ProductDataComponent, canActivate: [AuthGuard] }, // se coge con el id del almacen
-    { path: 'data_user', component: DataUserComponent, canActivate: [AuthGuard] },
-    { path: 'data_map', component: DataMapComponent, canActivate: [AuthGuard] },
-    { path: 'chat_ia', component: ChatIAComponent, canActivate: [AuthGuard] }
+    { path: 'warehouse', component: WarehouseComponent },
+    { path: 'graphics', component: GraphicsComponent },
+    { path: 'product_data/:id', component: ProductDataComponent }, // se coge con el id del almacen
+    { path: 'data_user', component: DataUserComponent },
+    { path: 'data_map', component: DataMapComponent },
+    { path: 'chat_ia', component: ChatIAComponent }
 ];
 
+/*
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
   })
+    */
   export class AppRoutingModule { }
   
