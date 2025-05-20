@@ -23,6 +23,3 @@ const routes: Routes = [
   { path: 'data_map', component: DataMapComponent },
   { path: 'chat_ia', component: ChatIAComponent }
 ];
-
-
-export class AppRoutingModule {}
