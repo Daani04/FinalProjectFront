@@ -1,0 +1,35 @@
+@if ( openScanner === true) {
+    <div id="modal-overlay"></div>
+
+    <div id="scanner">
+        <app-barcode-scanner 
+            (scanCompleted)="openCheckWindows()" 
+            (productNotFound)="handleProductNotFound()"
+            [scannerAction]="scannerAction">
+        </app-barcode-scanner>
+        <p id="close" (click)="closeModalScanner()">Cerrar</p>
+    </div>
+} @else if (isModalScanned === true) {
+    <div id="checkCont">
+        <dotlottie-player
+            src="https://lottie.host/d13abdc7-99bc-46b0-bcd0-bb883cc52603/u2ei4KJ6qs.lottie"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px; margin: 0 auto;"
+            autoplay
+          ></dotlottie-player>
+    </div>
+} @else if(noProductInBBDD === true) {
+    <div id="checkCont">
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        <dotlottie-player 
+        src="https://lottie.host/8cca6480-9747-4281-ac72-db9ab6793042/0xL04uW1Yk.lottie" 
+        background="transparent" 
+        speed="0.5" 
+        style="width: 200px; height: 200px; margin: 0 auto;"
+        autoplay
+        >
+    </dotlottie-player>
+        <p class="noProductText">Producto no encontrado en la base de datos</p>
+    </div>
+}

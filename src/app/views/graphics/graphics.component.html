@@ -1,0 +1,209 @@
+@if (loadingAllPage === true) {
+  <div class="spinner-background" [ngStyle]="{
+    'visibility': changueScreen ? 'visible' : 'hidden',
+    'opacity': changueScreen ? '1' : '0',
+    'pointer-events': changueScreen ? 'auto' : 'none'
+  }">
+    <div class="no-products-container">
+      @if (products.length === 0) {
+        <h3 id="noProductsAlert">Para poder entrara a la pagina de graficos añade algun producto</h3>
+      } @else {
+        <h3 id="noProductsAlert">Vende o retira algun producto para poder acceder a la pagina</h3>
+      }
+      <a id="redirectHomeButton" [routerLink]="['/home']" class="card-link">Añadir productos</a> 
+    </div>
+  </div>
+}
+
+@if (loadingData === true) {
+  <div class="spinnerLoadingData-background" [ngStyle]="{
+    'visibility': changueScreenData ? 'visible' : 'hidden',
+    'opacity': changueScreenData ? '1' : '0',
+    'pointer-events': changueScreenData ? 'auto' : 'none'
+  }">
+    <div class="spinnerLoadingData">
+      <div class="doubleD-bounce1"></div>
+      <div class="doubleD-bounce2"></div>
+    </div>
+  </div>
+}
+
+<h1>MIS GRAFICOS</h1>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-5 mb-4 d-flex flex-column flex-grow-1">
+      <div class="stacked-charts h-100">
+        <div class="graphics">
+          <h3>Ventas mensuales</h3>
+            <app-chart #chartComponentBarSale [type]="'bar'" [data]="barSale"> </app-chart>
+        </div>
+        <div class="graphics">
+          <h3>Ventas de esta semana</h3>
+          <app-chart #chartComponentLineSale [type]="'line'" [data]="lineSale"> </app-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 mb-4 d-flex flex-column flex-grow-1">
+      <div class="single-chart h-100">
+        <h3>Productos mas vendidos</h3>
+          <app-chart #chartComponentCircularMostSale [type]="'pie'" [data]="circularMostSale"> </app-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-12 mb-4">
+      <div class="double-chart h-100">
+        <div class="graphics">
+          <h3>Entrada de productos</h3>
+          <app-chart #chartComponentLineEntrateProducts [type]="'line'" [data]="lineEntrateProducts"></app-chart>
+        </div>
+        <div class="graphics">
+          <h3>Salida de productos</h3>
+          <app-chart #chartComponentLineExitProducts [type]="'line'" [data]="lineExitProducts"> </app-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-12 mb-4">
+      <div class="double-chart h-100">
+        <div class="graphics">
+          <h3>Gastos en productos</h3>
+          <app-chart #chartComponentLineGrossProfits [type]="'line'" [data]="lineGrossProfits"> </app-chart>
+        </div>
+        <div class="graphics">
+          <h3>Beneficio estimado</h3>
+          <app-chart #chartComponentLineNetProfits [type]="'line'" [data]="lineNetProfits"> </app-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--GRAFICOS EXTRA-->
+  @if (cont2 === 1) {
+    <div class="row justify-content-center">
+      <div class="col-md-12 mb-4">
+        <div class="double-chart h-100">
+          <div class="graphics">
+            <h3>Productos mas caros</h3>
+            <app-chart #chartComponentMostExpensiveProducts [type]="'radar'" [data]="mostExpensiveProducts"> </app-chart>
+          </div>
+          <div class="graphics">
+            <h3>Productos mas baratos</h3>
+            <app-chart #chartComponentMostCheapProducts [type]="'radar'" [data]="mostCheapProducts"> </app-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  } 
+
+  @if (cont3 === 1) {
+    <div class="row justify-content-center">
+      <div class="col-md-12 mb-4">
+        <div class="double-chart h-100">
+          <div class="graphics">
+            <h3>Productos con mas stock</h3>
+            <app-chart #chartComponentMoreStockProducts [type]="'polarArea'" [data]="moreStockProducts"> </app-chart>
+
+          </div>
+          <div class="graphics">
+            <h3>Productos con menos stock</h3>
+            <app-chart #chartComponentLittleStockProducts [type]="'polarArea'" [data]="littleStockProducts"> </app-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!--GRAFICOS IA-->
+
+  @if (dataNewGraphics.length !== 0) {
+    <span class="inline-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+      </svg>
+      <p id="warningGraphicsIA">Los graficos generados por la IA pueden contener errores</p>
+  </span>
+      <div class="row justify-content-center">
+      <div class="col-md-12 mb-4">
+        <div class="double-chart h-100">
+          <div class="graphics">
+            <div id="customGraphic">
+              <h3 id="titleCustomGraphic">{{dataNewGraphics[1]}}</h3>
+              <app-chart [type]="'bar'" [data]="GraphicIA"></app-chart>
+              <img id="deleteCustonGraphic" src="/img/eliminar.png" alt="logo" (click)="deleteCustomGraphic()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (loading === true) {
+    <div class="row justify-content-center">
+      <div class="col-md-12 mb-4">
+        <div class="double-chart h-100">
+          <div class="graphics">
+            <div class="loading-overlay">
+              <div class="spinner" style="margin-top: 160px;">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  
+  <div id="contButton">
+    @if (contButton === 0) {
+      <img id="addButton" src="/img/addPhoto.png" class="img-fluid" alt="Añadir grafico" (click)="modifyContButton()">
+    } @else {
+        @if (showFormIa === false) {
+          <div id="newGraphics">
+            <h3>Añadir nuevas graficas</h3>
+            <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+    
+              <div class="form-check mb-3">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="remember" formControlName="check2"> Productos mas caros y mas baratos 
+                </label>
+              </div>
+    
+              <div class="form-check mb-3">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="remember" formControlName="check3"> Stock de los productos
+                </label>
+              </div>
+    
+              <button id="addGraphicsButton" type="submit" class="btn btn-primary">Aplicar</button>
+            </form>
+          </div>
+
+          <div class="newGraphicsIA">
+            <p id="addNewGraphicsIA" (click)="showNewGraphicsIAForm()">Graficas personalizadas</p>
+          </div>
+        }@else {
+          <div class="newGraphicsIA">
+            <div id="newGrapicsIaContent">
+              <h4>Generacion de grafico personalizado </h4>
+                <form [formGroup]="reactiveFormGraphics" (ngSubmit)="onSubmitGraphics()">
+                  <label for="name" class="form-label"></label>
+                  <input type="text" id="name" name="name" class="form-control my-2" placeholder="¿Que grafico quieres generar?" required formControlName="graphicInstructions">      
+                  <button id="addGraphicsButton" type="submit" class="btn btn-primary">Generar</button>
+                </form>
+            </div>
+          </div>
+        } 
+        <button id="closeButton" type="submit" class="btn btn-primary"  (click)="modifyContButton()">Cerrar</button>
+    }
+  </div>
+</div>
+
+<app-footer></app-footer>

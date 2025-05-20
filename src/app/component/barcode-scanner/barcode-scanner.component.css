@@ -1,0 +1,9 @@
+zxing-scanner {
+    width: 100%; 
+    max-width: 600px;
+    height: 400px; 
+    display: block;
+    margin: 0 auto; 
+    margin-top: 30px;
+  }
+  

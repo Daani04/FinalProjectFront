@@ -1,0 +1,51 @@
+  @if (isOpen === true) {
+    @if (modalAction === "getInfo") {
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <h2>Datos de tu cuenta</h2>
+        <p>Nombre de usuario: {{username}} </p>
+        <p>Correo electronico: {{email}} </p>
+        <p>Sector de la empresa: {{companyName}} </p>
+        <button id="close" (click)="close()">Cerrar</button>
+      </div>
+    </div>  
+    } @else if(modalAction === "deleteAccount") {
+      <div class="modal-overlay">
+        <div class="modal-content">
+          <h2>¿Estás seguro de que deseas eliminar tu cuenta?</h2>
+          <p>Esta acción es irreversible.</p>
+          <button id="delete" (click)="confirm()">Sí, eliminar cuenta</button>
+          <button id="close" (click)="close()">Cancelar</button>
+        </div>
+    </div>
+    } @else if (modalAction === "deleteWarehouse") {
+      <div class="modal-overlay">
+        <div class="modal-content">
+          <h2>Almacen eliminado correctamente</h2>
+          <dotlottie-player
+            src="https://lottie.host/d13abdc7-99bc-46b0-bcd0-bb883cc52603/u2ei4KJ6qs.lottie"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px; margin: 0 auto;"
+            autoplay
+          ></dotlottie-player>
+          <button id="close" (click)="close()">Cerrar</button>
+        </div>
+    </div>
+    } @else {
+      <div class="modal-overlay">
+        <div class="modal-content">
+          <h2>Datos insertados correctamente</h2>
+          <dotlottie-player
+            src="https://lottie.host/d13abdc7-99bc-46b0-bcd0-bb883cc52603/u2ei4KJ6qs.lottie"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px; margin: 0 auto;"
+            autoplay
+          ></dotlottie-player>
+          <button id="close" (click)="close()">Cerrar</button>
+        </div>
+    </div>
+    }
+  }
+

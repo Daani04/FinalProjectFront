@@ -1,0 +1,99 @@
+<div class="container">
+  <h1>MIS ALMACENES</h1>
+
+  @if (loading === true) {
+    <div class="spinner-background" [ngStyle]="{
+      'visibility': changueScreen ? 'visible' : 'hidden',
+      'opacity': changueScreen ? '1' : '0',
+      'pointer-events': changueScreen ? 'auto' : 'none'
+    }">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+  }
+  
+  <div class="row">
+    @for (warehouse of warehouses; track $index) {
+      <div class="col-12 col-sm-6 col-md-4 mb-4 mt-4 d-flex justify-content-center">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title"> {{warehouse.name}} </h4>
+            <div id="warehouseImgCont">
+              <img id="logo" src="/img/almacen.png" alt="logo">
+            </div>
+            @if (numOfArticles.length !== 0) {
+              <p class="card-text">Numero de articulos: {{numOfArticles[$index]}} </p>
+              <p class="card-text">Ganancias estimadas: {{netProfitPerWarehouse[$index]}}€ </p>
+              <p class="card-text">Valor total: {{totalInventoryValue[$index]}}€ </p>
+            } @else {
+              <p class="card-text">Numero de articulos: N/a </p>
+              <p class="card-text">Ganancias estimadas: N/a </p>
+              <p class="card-text">Valor total: N/a </p>
+            }
+            <!--Envia el id del almacen-->
+            @if (numOfArticles.length !== 0) {
+              <a [routerLink]="['/product_data', warehouse.id]" class="card-link">Ver artículos</a> 
+            } @else {
+              <a (click)="alertNoData()" class="card-link">Ver artículos</a> 
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+
+    <!-- Revisar bien el formulario ya que en la pagina de inicio pide mas datos para crar el almacen -->
+    <div class="col-12 col-sm-6 col-md-4 mb-4 mt-4 d-flex justify-content-center">
+      <div id="Step6AddWarehouse" class="card">
+        <div class="card-body">
+          <h4 class="card-title">AÑADIR NUEVO ALMACEN</h4>
+          @if (formWarehouse === false) {
+            <div class="image-container" (click)="controlForm()">
+              <img id="addWarehouseButton" src="/img/addPhoto.png" class="img-fluid" alt="Añadir foto">
+            </div>
+          } @else {
+            <form [formGroup]="reactiveForm" id="warehouseName" class="text-center">
+              <label for="name" class="form-label">Nombre del almacén</label>
+              <input type="text" id="name" name="name" class="form-control my-2" placeholder="Introduzca un nombre" required formControlName="warehouseName">
+  
+              <label for="com" class="form-label">Comunidad</label>
+              <select id="com" name="com" class="form-control my-2" required formControlName="locationWarehouseCommunity">
+                <option value="" disabled selected>Seleccione una comunidad</option>
+                <option value="Andalucía">Andalucía</option>
+                <option value="Aragón">Aragón</option>
+                <option value="Asturias">Asturias</option>
+                <option value="Islas Baleares">Islas Baleares</option>
+                <option value="Canarias">Canarias</option>
+                <option value="Cantabria">Cantabria</option>
+                <option value="Castilla-La Mancha">Castilla-La Mancha</option>
+                <option value="Castilla y León">Castilla y León</option>
+                <option value="Cataluña">Cataluña</option>
+                <option value="Extremadura">Extremadura</option>
+                <option value="Galicia">Galicia</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Comunidad de Madrid">Comunidad de Madrid</option>
+                <option value="Región de Murcia">Región de Murcia</option>
+                <option value="Navarra">Navarra</option>
+                <option value="País Vasco">País Vasco</option>
+                <option value="Comunidad Valenciana">Comunidad Valenciana</option>
+              </select>
+              
+  
+              <label for="city" class="form-label">Ciudad</label>
+              <input type="text" id="city" name="city" class="form-control my-2" placeholder="Introduzca la ciudad" required formControlName="locationWarehouseCity">
+  
+              <label for="location" class="form-label">Ubicación almacén</label>
+              <input type="text" id="location" name="location" class="form-control my-2" placeholder="Introduzca la calle" required formControlName="locationWarehouseStreet">
+              <button type="submit" class="btn" (click)="getStreetForm()">Crear</button>
+            </form>
+              <p id="close" (click)="controlForm()">Cerrar</p>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

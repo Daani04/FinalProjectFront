@@ -1,0 +1,61 @@
+footer {
+    width: 100%;
+    min-width: 320px;
+    height: auto;
+    background-color: #343a40;
+}
+
+#instagram {
+    width: 50px;
+    margin-right: 50px;
+    transition: all 0.3s ease-in-out; 
+}
+
+#facebook {
+    width: 40px;
+    margin-right: 20px;
+    transition: all 0.3s ease-in-out; 
+}
+
+#x {
+    width: 110px;
+    transition: all 0.3s ease-in-out; 
+}
+
+#instagram:hover {
+    transform: scale(1.1); 
+}
+
+#facebook:hover {
+    transform: scale(1.1); 
+}
+
+#x:hover {
+    transform: scale(1.1); 
+}
+
+#logo {
+    width: 200px;
+    margin-top: 10px;
+}
+
+p {
+    color: white;
+}
+
+.col-md-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md-6 {
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    /*Solo se aplica al primer hijo*/
+    .row > .col-md-3:first-child {
+        margin-top: 50px;
+    }
+}

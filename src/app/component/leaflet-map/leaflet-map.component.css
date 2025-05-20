@@ -1,0 +1,49 @@
+body, html {
+    overflow-x: hidden;
+}
+
+/* Pantalla de carga */
+.spinner {
+    width: 70px;
+    height: 70px;
+    position: relative;
+  }
+  
+  .spinner-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .double-bounce1, 
+  .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom, #4E2394, #DBC9F5);
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+  }
+  
+  .double-bounce2 {
+    animation-delay: -1.0s;
+  }
+  
+  @keyframes sk-bounce {
+    0%, 100% { 
+      transform: scale(0);
+    } 50% { 
+      transform: scale(1.0);
+    }
+  }
+  

@@ -1,0 +1,296 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 2px solid rgba(146, 146, 147, 0.5);
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: rgba(60, 60, 64, 0.5);
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    margin: 20px auto; 
+    text-align: center;
+}
+
+.pagination-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.pagination-arrow {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#filter {
+    background-color: #343a40;
+    max-height: 200px;
+    margin-bottom: 5px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    transition: width 0.5s ease; 
+}
+
+#filterImg {
+    transition: filter 0.5s ease;  
+}
+
+#filterImg:hover {
+    filter: grayscale(100%) brightness(200%);  /* Cambia el color a un blanco */
+}
+
+#lefArrow, #rigArrow{
+    transition: filter 0.5s ease;  
+}
+
+#lefArrow:hover {
+    filter: grayscale(100%) brightness(200%);
+}
+
+#rigArrow:hover {
+    filter: grayscale(100%) brightness(200%);
+}
+.search-bar {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;  
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;  
+    width: calc(25% - 20px);  /*Hace que no se muevan los campos del formulario al colapsar*/
+    max-width: 200px; 
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.search-input, .price-slider, .search-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.search-button {
+    background-color: #686868;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.search-button:hover {
+  background-color: #1d2124;
+  color: wheat;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inline-container {
+    display: inline-flex;
+    align-items: center; 
+    gap: 8px; 
+    vertical-align: middle; 
+    color: rgb(182, 180, 180);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+  }
+  
+  .modal-content {
+    background-color: rgb(34, 31, 31);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1200px;
+    height: 700px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    max-height: 90vh; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+  }
+  
+  .product-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-form .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-form label {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  
+  .product-form .form-control {
+    padding: 0.7rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+  }
+  
+  .product-form .btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  #closeModal {
+    padding: 7px;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+  }
+  
+  #closeModal:hover {
+    background-color: #343a40;
+    color: wheat;
+    border-radius: 5px;
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: 11px;
+  }
+  
+  .modal-content::-webkit-scrollbar-track {
+    background: #414141;
+    border-radius: 5px;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+    border: 2px solid #2c2c2c;
+  }
+  
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+  }
+
+  @media (max-width: 850px) {
+    .search-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group {
+        width: 100%;
+        max-width: none;
+    }
+
+    #filter {
+        max-height: 800px;
+        max-width: 300px;
+    }
+}
+
+    /*Pantalla de carga*/
+    .spinner {
+        width: 70px;
+        height: 70px;
+        position: relative;
+    }
+    
+    .spinner-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .double-bounce1, 
+    .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-image: linear-gradient(to bottom, #4E2394, #DBC9F5);
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+    
+    .double-bounce2 {
+        animation-delay: -1.0s;
+    }
+    
+    @keyframes sk-bounce {
+        0%, 100% { 
+        transform: scale(0);
+        } 50% { 
+        transform: scale(1.0);
+        }
+    }

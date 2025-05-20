@@ -1,0 +1,9 @@
+ <!-- [tryHarder]="true" => Mejora la fiabilidad del reconocimiento del codigo pero es mas lento -->
+<zxing-scanner
+  [formats]="formats"
+  [tryHarder]="true" 
+  [autostart]="true"
+  (scanSuccess)="onScanSuccess($event)">
+</zxing-scanner>
+
+  

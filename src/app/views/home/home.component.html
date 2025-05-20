@@ -1,0 +1,303 @@
+<h1>BIENVENIDO {{userName}} </h1>
+<div class="container">
+
+  @if (loading === true) {
+  <div class="spinner-background" [ngStyle]="{
+      'visibility': changueScreen ? 'visible' : 'hidden',
+      'opacity': changueScreen ? '1' : '0',
+      'pointer-events': changueScreen ? 'auto' : 'none'
+    }">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+  }
+
+  @if (isFirstVisit === true && showWelcomeScreen === true) {
+    <div class="lottie-overlay">
+      <dotlottie-player
+        src="https://lottie.host/0379e3b0-9062-41f9-bd95-55f877833fff/55JzuqGbGV.lottie"
+        background="transparent"
+        speed="1"
+        style="width: 800px; height: 800px;"
+        autoplay
+      ></dotlottie-player>
+    </div>
+  }
+
+  <div class="row justify-content-center">
+    <div class="col-md-12 mb-4">
+      <div class="double-chart h-100">
+        @if (productsUser. length !== 0 && productsSold.length !== 0) {
+          <div class="graphics">
+            <h3>Entrada de productos</h3>
+            <app-chart #chartComponentLineEntrateProducts [type]="'line'" [data]="lineEntrateProducts"></app-chart>
+          </div>
+          <div class="graphics">
+            <h3>Salida de productos</h3>
+            <app-chart #chartComponentLineExitProducts [type]="'line'" [data]="lineExitProducts"> </app-chart>
+          </div>
+        } @else {
+          <div class="alertNoDataProductsContainer">
+            <h5 class="alertNoDataProductsH5">Añade y retira un producto para poder mostrar los graficos de datos</h5>
+          </div>  
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center gap-5 custom-row"
+    style="margin-bottom: 50px; margin-top: 50px; text-align: center;">
+    <div id="Step2Warehouses" class="col-md-5 p-4  custom-warehouse-box  rounded" style=" box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); ">
+      <h3>Mis almacenes</h3>
+      @if (warehouses.length !== 0) {
+      @for (warehouse of warehouses; track $index) {
+      <div id="userWarehouses">
+        <img id="warehouseLogo" src="/img/almacen.png" alt="logo">
+        <p>{{warehouse.name}}</p>
+      <img id="warehouseDelete" src="{{deleteImg[$index]}}" alt="logo" 
+              (mouseover)="changeDeleteImg($index)" 
+              (mouseout)="returnInitialImg($index)"
+              (click)="deleteWarehouse(warehouse.name)">      
+        </div>
+      }
+      } @else {
+      <p class="warehouseP">No tienes ningun almacen</p>
+      }
+      @if (cont === 0) {
+      <button type="button" class="btn" (click)="toggleForm()">Añadir nuevo almacén</button>
+      } @else {
+      <form [formGroup]="reactiveForm" id="warehouseName" class="text-center">
+        <label for="name" class="form-label">Nombre del almacén</label>
+        <input type="text" id="name" name="name" class="form-control my-2" placeholder="Introduzca un nombre" required
+          formControlName="warehouseName">
+
+        <label for="com" class="form-label">Comunidad</label>
+        <select id="com" name="com" class="form-control my-2" required formControlName="locationWarehouseCommunity">
+          <option value="" disabled selected>Seleccione una comunidad</option>
+          <option value="Andalucía">Andalucía</option>
+          <option value="Aragón">Aragón</option>
+          <option value="Asturias">Asturias</option>
+          <option value="Islas Baleares">Islas Baleares</option>
+          <option value="Canarias">Canarias</option>
+          <option value="Cantabria">Cantabria</option>
+          <option value="Castilla-La Mancha">Castilla-La Mancha</option>
+          <option value="Castilla y León">Castilla y León</option>
+          <option value="Cataluña">Cataluña</option>
+          <option value="Extremadura">Extremadura</option>
+          <option value="Galicia">Galicia</option>
+          <option value="La Rioja">La Rioja</option>
+          <option value="Comunidad de Madrid">Comunidad de Madrid</option>
+          <option value="Región de Murcia">Región de Murcia</option>
+          <option value="Navarra">Navarra</option>
+          <option value="País Vasco">País Vasco</option>
+          <option value="Comunidad Valenciana">Comunidad Valenciana</option>
+        </select>
+
+        <label for="city" class="form-label">Ciudad</label>
+        <input type="text" id="city" name="city" class="form-control my-2" placeholder="Introduzca la ciudad" required
+          formControlName="locationWarehouseCity">
+
+        <label for="location" class="form-label">Ubicación almacén</label>
+        <input type="text" id="location" name="location" class="form-control my-2" placeholder="Introduzca la calle"
+          required formControlName="locationWarehouseStreet">
+        <button type="submit" class="btn" (click)="getStreetForm()">Crear</button>
+      </form>
+      <p class="close" (click)="closeWarehouse()">Cerrar</p>
+      }
+    </div>
+
+    <div id="Step3Products" class="col-md-5 custom-warehouse-box p-4  rounded" style="text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+      <h3>Mis productos</h3>
+      <h5> {{randomWarehouseName}} </h5>
+      @if (products.length !== 0) {
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Fecha de Entrada</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products; track $index) {
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.entry_date }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      } @else {
+      <p class="warehouseP">No tienes ningun productos</p>
+      }
+
+      @if (products.length !== 0) {
+      <div class="pagination-container">
+        <img id="lefArrow" src="/img/lefArrow.png" alt="flecha izquierda" (click)="beforePage()"
+          class="pagination-arrow">
+
+        <p class="pagination-text">Página {{actualPage}} de {{totalPages}}</p>
+
+        <img id="rigArrow" src="/img/rigArrow.png" alt="flecha derecha" (click)="nextPage()" class="pagination-arrow">
+      </div>
+      }
+
+      @if (contInsertionData === 1) {
+      <form [formGroup]="selectWarehouseForInsertProducts" id="selectWarehouseForm" class="text-center">
+        <label for="com" class="form-label">Seleccionar almacen</label>
+        <select id="com" name="com" class="form-control my-2" required formControlName="selectWarehouse">
+          @if (warehouses.length !== 0) {
+          <option value="" disabled selected>Todos los almacenes</option>
+          @for (warehouse of warehouses; track $index) {
+          <option value="{{warehouse.name}}">{{warehouse.name}}</option>
+          }
+          } @else {
+          <option value="" disabled selected>No tienes almacenes</option>
+          }
+        </select>
+        <button class="btn" (click)="showOptionForInsertData()">Seleccionar</button>
+      </form>
+      @if (selectedWarehouse === true) {
+      <button class="btn" (click)="changeShowForm()">Añadir manualmente</button>
+      <button class="btn" (click)="openModalAddProduct()">Escanear productos</button>
+      <app-modal-scanner (closeModal)="closeModal()"></app-modal-scanner>
+      }
+      } @else {
+      <button class="btn" (click)="insertionMethod()">Añadir productos</button>
+      }
+
+      @if ( showForm === true) {
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+        <div class="form-group mb-3">
+          <label for="name">Nombre</label>
+          <input id="name" formControlName="name" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="brand">Marca</label>
+          <input id="brand" formControlName="brand" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="price">Precio de venta</label>
+          <input id="price" formControlName="price" type="number" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="price">Precio de compra</label>
+          <input id="price" formControlName="purchasePrice" type="number" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="stock">Stock</label>
+          <input id="stock" formControlName="stock" type="number" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="productType">Tipo de Producto</label>
+          <input id="productType" formControlName="productType" type="text" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="entryDate">Fecha de Entrada</label>
+          <input id="entryDate" formControlName="entryDate" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="expirationDate">Fecha de Expiración(alimenticios)</label>
+          <input id="expirationDate" formControlName="expirationDate" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="barcode">Codigo de barras</label>
+          <input id="barcode" formControlName="barcode" type="number" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success" (click)="uploadProducts()">Añadir</button>
+      </form>
+      <p class="closeSoldProducts" (click)="closeProducts()">Cerrar</p>
+      }
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-10 withdrawProductsManually rounded">
+      <div id="formForDeleteManually">
+        <h3 id="titlewithdrawProduct">Retirar un producto manualmente</h3>
+        @if(showWithdrawForm === false && selectWarehouse === false) {
+          <button id="withdrawButton" type="button" class="btn" (click)="loadWarehouseSelection()" >Seleccionar Almacen</button>
+        }
+        @if (showWithdrawForm === true) {
+          <span class="inline-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-exclamation-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+            </svg>
+            <p style="margin: 0;">Esta funcion pasa los productos a la tabla de ventas, para retirar el stock de un producto ve a la tabla de productos </p>
+        </span>
+          <form [formGroup]="withdrawFormSelectWarehouse" class="soldProductsForm">
+            <div class="form-group">
+              <label class="form-label">Mis almacenes</label>
+              <select formControlName="warehouseName" class="form-control my-2">
+                <option value="">Almacenes</option>
+                @for (type of userWarehousesNames; track $index) {
+                  <option [value]="type">{{ type }}</option>
+                }
+              </select>   
+            </div>             
+            <button type="submit" class="btn" (click)="handleWarehouseSelection()">Seleccionar</button>
+          </form>
+          <p class="closeSoldProductsSold" (click)="closeProducts()">Cerrar</p>
+        } 
+
+        @if (selectWarehouse === true) {
+          <form [formGroup]="withdrawFormSelectProduct" class="soldProductsForm">
+            <div class="form-group">
+              <label class="form-label">Productos</label>
+              <select formControlName="productName" class="form-control my-2">
+                <option value="">Todos los productos</option>
+                @for (product of productUserNames; track product.id) {
+                  <option [value]="product.id">{{ product.name }}</option>
+                }
+              </select>       
+            </div>
+          
+            <div class="form-group">
+              <label for="quantity" class="form-label">Cantidad a retirar</label>
+              <input type="number" id="quantity" name="quantity" min="1" max="100" step="1" 
+                     formControlName="productQuantity" required class="form-control my-2">
+            </div>
+          
+            <button type="submit" class="btn" (click)="moveToSold()">Retirar</button>
+          </form>
+          <p class="closeSoldProductsSold" (click)="closeProducts()">Cerrar</p>
+        }
+      </div>
+    </div> 
+  </div>
+
+  <div class="row justify-content-center gap-5 custom-row"
+    style="margin-bottom: 50px; margin-top: 50px; text-align: center;">
+    <div id="Step4AddProductScanner" class="col-md-5  p-4  rounded" (click)="openModalAddProduct()" style=" box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+      <h3>Añadir producto</h3>
+      <img id="addAndRemove" src="/img/addPhoto.png" class="img-fluid" alt="Añadir foto">
+      <app-modal-scanner [openScanner]="openModalScanner" [scannerAction]="scannerAction" (closeModal)="closeModal()"></app-modal-scanner>
+    </div>
+
+  <div id="Step5RemoveProductScanner" class="col-md-5 p-4  rounded" style="text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);">
+      <h3>Retirar producto</h3>
+      <img id="addAndRemove" src="/img/removePhoto.png" (click)="openModalSoldProduct()" class="img-fluid" alt="Añadir foto">
+      <app-modal-scanner [openScanner]="openModalScanner" [scannerAction]="scannerAction" (closeModal)="closeModal()"></app-modal-scanner>
+    </div>
+  </div>
+
+</div>
+
+<app-modal [isOpen]="isModalOpen" [modalAction]="modalAction" (closeModal)="closeModalVerifyDataInsertion()"></app-modal>
+<app-footer></app-footer>

@@ -1,0 +1,84 @@
+.nav-link {
+    color: white;
+}
+
+/*Cambia el color del texto del nav de la pagina en la que nos encontramos*/
+.navbar-nav .nav-link.active {
+    color: wheat;   
+}
+
+#pChat {
+    font-weight: bold; 
+    background-image: linear-gradient(to bottom, #4E2394, #DBC9F5); /* El degradado de color */
+    background-clip: text; /* Aplica el degradado solo al texto */
+    color: transparent; /* Hace el color de texto transparente para que se vea el degradado */
+    letter-spacing: 1px; 
+  }
+
+  aside {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 9999;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #333;   
+  }
+  
+  h3 {
+    padding: 30px;
+  }
+  
+  #closeNotifications, #firstNot {
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; 
+    transition: background-color 0.3s ease;
+  }
+
+  #closeNotifications:hover {
+    background-color: #686868;
+    color: wheat;
+  }
+
+  #notification {
+    position: relative; 
+    background-color: #686868;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  #remove {
+    width: 25px; 
+    height: 30px;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: -10px;  
+    right: -10px; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease;
+  }
+
+  #remove:hover {
+    transform: scale(1.1); 
+  }
+
+  #notificationImg {
+    cursor: pointer;
+  }
+  
+  
+  

@@ -1,0 +1,55 @@
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100 login-page">
+    <div class="login-box">
+        <h2>Registrarse</h2>
+        <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+            <div class="user-box">
+                <input type="text" class="form-control" id="userName" name="userName" formControlName="userName"
+                    required>
+                <label for="userName">Nombre de ususario</label>
+            </div>
+            <div class="user-box">
+                <input type="text" class="form-control" id="email" name="email" formControlName="email" required>
+                <label for="email">Correo electrónico</label>
+            </div>
+            <div class="user-box">
+                <input type="password" class="form-control" id="password" name="password" formControlName="password"
+                    required>
+                <label for="password">Contraseña</label>
+            </div>
+            <div class="user-box">
+                <label for="company"></label>
+                <select class="form-control" id="company" name="company" formControlName="company" required>
+                    <option value="" disabled selected>Selecciona tu sector</option>
+                    <optgroup label="Alimentación y Hostelería">
+                        <option value="panaderia_pasteleria">Panaderías y Pastelerías</option>
+                        <option value="restauracion">Restaurantes y Bares</option>
+                        <option value="supermercado">Supermercados y Tiendas de Alimentos</option>
+                    </optgroup>
+                    <optgroup label="Tecnología y Electrónica">
+                        <option value="informatica">Tiendas de Informática</option>
+                        <option value="distribucion_tecnologica">Distribuidores Tecnológicos</option>
+                        <option value="servicios_software">Empresas de Software</option>
+                    </optgroup>
+                    <optgroup label="Comercio y Retail">
+                        <option value="moda">Tiendas de Moda y Complementos</option>
+                        <option value="ferreteria">Ferreterías y Suministros</option>
+                        <option value="papeleria">Papelerías y Librerías</option>
+                    </optgroup>
+                    <optgroup label="Logística y Almacenamiento">
+                        <option value="almacen_general">Almacenes y Centros Logísticos</option>
+                        <option value="distribucion">Empresas de Distribución</option>
+                    </optgroup>
+                    <optgroup label="Otros Sectores">
+                        <option value="otros">Otros</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            <br>
+            <br>
+            <p>¿Ya tienes cuenta?</p>
+            <a href="/login">Iniciar Sesion</a>
+        </form>
+    </div>
+</div>

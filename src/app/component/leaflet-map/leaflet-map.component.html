@@ -1,0 +1,14 @@
+<div id="mapa" style="height: calc(100vh - 65px); width: 100%;"></div>
+
+@if (loading === true) {
+    <div class="spinner-background" [ngStyle]="{
+      'visibility': changueScreen ? 'visible' : 'hidden',
+      'opacity': changueScreen ? '1' : '0',
+      'pointer-events': changueScreen ? 'auto' : 'none'
+    }">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+}

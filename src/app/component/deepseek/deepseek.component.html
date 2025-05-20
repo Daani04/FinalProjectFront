@@ -1,0 +1,57 @@
+<div class="container">
+
+  @if (answers.length !== 0) {
+    @for (answer of answers; track $index) {
+      <div class="row">
+        <div class="col-md-6 mb-0 p-4" style="background-color: rgba(97, 97, 102, 0.5); border-end-end-radius: 0; border-end-start-radius: 0;">
+          <p>{{ questions[$index] }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-4 p-4" style="border-top-left-radius: 0; border-top-right-radius: 0;">
+          <p>{{ answers[$index] }}</p>
+        </div>
+      </div>
+    }
+  }
+
+  @if (loading === true) {
+    <div class="row">
+      <div class="col-md-6 p-4 mb-4">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div id="Step7ChatIA" class="row center-last-row">
+    <div class="col-md-6 small-container mb-5">
+      <div class="editable" contenteditable="true" (input)="updateUserInput($event)" [attr.placeholder]="placeHolderText"></div>
+      <button (click)="sendMessage()"><img id="logo" src="/img/enviar.png" alt="logo"></button>
+    </div>
+  </div>
+
+
+  <div  id="Step8ChatOptions" class="row">
+    <div class="col-md-3 mb-5">
+      <div class="options-container">
+        <div class="options-row">
+          <p (click)="questionsList($event)" class="optionsDeepSeek" data-info="Que es stockmaster, expilca su funcionamiento">¿Qué es StockMaster?</p>
+          <p (click)="questionsList($event)" class="optionsDeepSeek" data-info="Como funciona el sistema de escaner de productos de stockmaster">Sistema de scáner</p>
+          <p (click)="questionsList($event)" class="optionsDeepSeek" data-info="Como funciona el sistema de graficos de stockmaster">Sistema de gráficos</p>
+        </div>
+        <div class="options-row">
+          <p (click)="questionsList($event)" class="optionsDeepSeek" data-info="De todos mis productos guardados en stockmaster saca el mas caro">Producto mas caro</p>
+          <p (click)="questionsList($event)" class="optionsDeepSeek" data-info="Revisa todos mis productos de stockmaster y dime si detectas algun problema en alguno">Detectar problemas</p>
+          <p (click)="questionsList($event)" class="optionsDeepSeek" data-info="Revisa todos los productos que tengo guardados y deime el stock de estos">Stock de los productos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+</div>

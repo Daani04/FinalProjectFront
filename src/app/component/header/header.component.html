@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-sm">
+    <div class="container-fluid">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">
+            <img id="logo" src="/img/logo.png" alt="logo" style="width: 50px;">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/warehouse" routerLinkActive="active">Almacen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/graphics" routerLinkActive="active">Graficos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/data_map" routerLinkActive="active">Mapa</a>
+                </li>
+                <li class="nav-item">
+                    <a id="pChat" class="nav-link" routerLink="/chat_ia" routerLinkActive="active">ChatIA</a>
+                </li>
+            </ul>
+
+            <div class="ms-auto">
+                <img id="notificationImg" src="/img/not2.png" alt="Notificación" style="width: 30px;" (click)="changeVisivility()">
+            </div>
+
+            <div class="ms-3 d-none d-sm-block">
+                <a class="nav-link" routerLink="/data_user" routerLinkActive="active">
+                    <img src="/img/userIcon.png" alt="User" style="width: 40px; border-radius: 50%; background-color: rgba(170, 166, 166, 0.5);">
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<aside [ngStyle]="{ 'visibility': hiddenNotification ? 'visible' : 'hidden' }">
+    <h3>NOTIFICACIONES</h3> 
+    @for (notification of notificationsList; track $index) {
+        <p id="notification"> {{notification.message}} <img id="remove" src="/img/{{notification.photo}}.png" alt="" (mouseover)="changePhoto($index)" (mouseout)="resetPhoto($index)" (click)="deleteNotification($index)"></p>
+    }
+    @if (notificationsList.length === 0) {
+        <p id="firstNot">No tienes ninguna notificacion</p>
+    }
+    <p id="closeNotifications" (click)="changeVisivility()">Cerrar</p>
+</aside>

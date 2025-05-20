@@ -1,0 +1,204 @@
+<h1>INVENTARIO</h1>
+
+@if (loading === true) {
+<div class="spinner-background" [ngStyle]="{
+    'visibility': changueScreen ? 'visible' : 'hidden',
+    'opacity': changueScreen ? '1' : '0',
+    'pointer-events': changueScreen ? 'auto' : 'none'
+  }">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+}
+
+<div id="filter" [ngStyle]="{'width': widthMenu}">
+  @if (viewMenu === false) {
+  <img id="filterImg" src="/img/filter.png" alt="Filtrar" (click)="deployMenu()">
+  } @else {
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSearch()" class="search-form">
+    <div class="search-bar">
+      <div class="form-group">
+        <label>Buscar un producto</label>
+        <input type="text" formControlName="searchQuery" placeholder="Buscar por nombre" class="search-input" />
+      </div>
+
+      <div class="form-group">
+        <label>Precio: {{ reactiveForm.get('minPrice')?.value }} - {{ reactiveForm.get('maxPrice')?.value }} €</label>
+        <input type="range" formControlName="minPrice" min="0" max="1000" step="10" class="price-slider" />
+        <input type="range" formControlName="maxPrice" min="0" max="1000" step="10" class="price-slider" />
+      </div>
+
+      <div class="form-group">
+        <label>Filtrar productos</label>
+        <select formControlName="productType" class="search-select">
+          <option value="">Todos los tipos</option>
+          @for (type of allProductType; track $index) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>        
+      </div>
+
+      <div class="form-group">
+        <label>Fecha de entrada</label>
+        <input type="date" formControlName="entryDate" class="search-input" />
+      </div>
+
+      <button type="submit" class="search-button">Filtrar</button>
+    </div>
+  </form>
+  <img id="filterImg" src="/img/arrowClose.png" alt="Filtrar" (click)="deployMenu()">
+  }
+</div>
+
+<span class="inline-container">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class="bi bi-exclamation-circle"
+    viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+  </svg>
+  <p style="margin: 0;">Para una mejor gestión de los productos prueba a preguntarle a la IA</p>
+</span>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Precio de venta</th>
+        <th>Costo del producto</th>
+        <th>Stock</th>
+        <th>Categoria</th>
+        <th>Fecha de caducidad</th>
+        <th>Fecha de entrada</th>
+        <th>Codigo de barras</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (filtratedProductsActivated === true) {
+        @for (product of productsUser; track $index) {
+          <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.brand}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.purchase_price}}</td>
+            <td>{{product.stock}}</td>
+            <td>{{product.product_type}}</td>
+            <td>{{product.expiration_date}}</td>
+            <td>{{product.entry_date}}</td>
+            <td>{{product.barcode}}</td>
+            <td><img src="/img/editar.png" alt="editar" (click)="dataSelectedProduct(product.id, product.warehouse)"></td>
+            <td><img src="/img/papelera.png" alt="eliminar" (click)="deleteProduct(product.id)"></td>
+          </tr>
+        }
+      } @else {
+        @for (product of products; track $index) {
+          <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.brand}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.purchase_price}}</td>
+            <td>{{product.stock}}</td>
+            <td>{{product.product_type}}</td>
+            <td>{{product.expiration_date}}</td>
+            <td>{{product.entry_date}}</td>
+            <td>{{product.barcode}}</td>
+            <td><img   src="/img/editar.png" alt="editar" (click)="dataSelectedProduct(product.id, product.warehouse)"></td>
+            <td><img src="/img/papelera.png" alt="eliminar" (click)="deleteProduct(product.id)"></td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination-container">
+  <img id="lefArrow" src="/img/lefArrow.png" alt="flecha izquierda" (click)="beforePage()" class="pagination-arrow">
+
+  <p class="pagination-text">Página {{actualPage}} de {{totalPages}}</p>
+
+  <img id="rigArrow" src="/img/rigArrow.png" alt="flecha derecha" (click)="nextPage()" class="pagination-arrow">
+</div>
+
+<div class="modal-overlay" [ngStyle]="{
+    'visibility': viewFormModifyData ? 'visible' : 'hidden',
+    'opacity': viewFormModifyData ? '1' : '0',
+    'pointer-events': viewFormModifyData ? 'auto' : 'none'
+  }">
+  <div class="modal-content">
+    <h2>Modificacion producto</h2>
+    <div class="container">
+      <form [formGroup]="productForm" class="product-form p-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group mb-4">
+              <label for="name">Nombre</label>
+              <input id="name" formControlName="name" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="brand">Marca</label>
+              <input id="brand" formControlName="brand" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="price">Precio de venta</label>
+              <input id="price" formControlName="price" type="number" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group mb-4">
+              <label for="purchasePrice">Precio de compra</label>
+              <input id="purchasePrice" formControlName="purchasePrice" type="number" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="stock">Stock</label>
+              <input id="stock" formControlName="stock" type="number" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="barcode">Código de barras</label>
+              <input id="barcode" formControlName="barcode" type="number" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="productType">Tipo de Producto</label>
+              <input id="productType" formControlName="productType" type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group mb-4">
+              <label for="entryDate">Fecha de Entrada</label>
+              <input id="entryDate" formControlName="entryDate" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="expirationDate">Fecha de Expiración</label>
+              <input id="expirationDate" formControlName="expirationDate" type="date" class="form-control" />
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="mt-2 d-flex flex-column align-items-center">
+          <button type="submit" class="btn btn-success mb-3" (click)="editProduct()">Modificar</button>
+          <button type="button" class="btn btn-secondary" id="closeModal" (click)="closeModal()">Cerrar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

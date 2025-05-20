@@ -1,0 +1,38 @@
+<h1 id="textLogo">StockMaster<img id="logo" src="/img/logo.png"  alt="logo"></h1>
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100 login-page">
+  <div class="login-box">
+    <h2>Iniciar sesión</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+      <div class="user-box">
+        <input type="text" class="form-control" id="email" name="email" formControlName="email" required>
+        <label for="email">Correo electrónico</label>
+      </div>
+      @if (cont === 1) {
+        <p class="text-danger">{{ errorMessaje }}</p>
+      }      
+      <div class="user-box">
+        <input type="password" class="form-control" id="password" name="password" formControlName="password" required>
+        <label for="password">Contraseña</label>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Acceder</button>
+      <br>
+      <br>
+        <p>¿No tienes cuenta?</p>
+        <a href="/register">Registrarse</a>
+    </form>
+  </div>
+</div>
+
+@if (loading === true) {
+  <div class="spinner-background" [ngStyle]="{
+    'visibility': changueScreen ? 'visible' : 'hidden',
+    'opacity': changueScreen ? '1' : '0',
+    'pointer-events': changueScreen ? 'auto' : 'none'
+  }">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+}

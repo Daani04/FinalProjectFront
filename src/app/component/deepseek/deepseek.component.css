@@ -1,0 +1,184 @@
+/*CAMBIAR, EL TAMAÑO DE LA PANTALLA PUEDE AFECTAR A SU FUNCION
+.container {
+  min-height: 50vh;
+}
+*/
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-6 {
+  background-color: rgba(60, 60, 64, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 800px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+.col-md-3 {
+  background-color: rgba(60, 60, 64, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 600px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.options-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.optionsDeepSeek {
+  background-color: #686868;
+  flex: 1;
+  height: 50px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-top: 15px;
+  text-align: center;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  max-width: 180px;
+}
+
+.optionsDeepSeek:hover {
+  background-color: #1d2124;
+  color: wheat;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.editable {
+  width: 85%;
+  background-color: transparent;
+  padding: 10px;
+  font-size: 16px;
+  min-height: 50px;
+  border: none;
+  outline: none;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: white;
+  margin-left: 20px;
+}
+
+.editable:empty:before {
+  content: attr(placeholder);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+button {
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 100px;
+  padding: 5px;
+  border: none;
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-image: linear-gradient(to bottom, #4E2394, #DBC9F5);
+}
+
+img {
+  width: 40px;
+  height: 30px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .col-md-6,
+  .col-md-3 {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .options-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .options-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .optionsDeepSeek {
+    width: 100%;
+    max-width: none;
+  }
+
+  .editable {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+
+/*CSS para la imagen de carga*/
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin-top: 100px auto;
+}
+
+.double-bounce1,
+.double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: linear-gradient(to bottom, #4E2394, #DBC9F5);
+  opacity: 0.6;
+  position: absolute;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  animation-delay: -1.0s;
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+  }
+
+  50% {
+    transform: scale(1.0);
+  }
+}
