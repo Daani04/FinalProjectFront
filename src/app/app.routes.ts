@@ -11,7 +11,7 @@ import { DataUserComponent } from './views/data-user/data-user.component';
 import { ChatIAComponent } from './views/chat-ia/chat-ia.component';
 import { DataMapComponent } from './views/data-map/data-map.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
