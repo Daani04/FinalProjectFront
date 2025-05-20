@@ -31,11 +31,11 @@ export class HomeComponent {
   @ViewChild('chartComponentLineEntrateProducts') chartComponentLineEntrateProducts!: ChartComponent;
   @ViewChild('chartComponentLineExitProducts') chartComponentLineExitProducts!: ChartComponent;
 
-  public apiWarehouseUrl: string = "http://127.0.0.1:8000/api/warehouse";
-  public apiProductsUrl: string = "http://localhost:8000/api/data";
+  public apiWarehouseUrl: string = "https://finalprojectback-dcdr.onrender.com/api/warehouse";
+  public apiProductsUrl: string = "https://finalprojectback-dcdr.onrender.com/api/data";
   private apiLocationUrl = 'https://nominatim.openstreetmap.org/reverse?format=json';
-  public apiSalesUrl: string = "http://localhost:8000/api/sales";
-  public apiUser: string = 'http://127.0.0.1:8000/api/user';
+  public apiSalesUrl: string = "https://finalprojectback-dcdr.onrender.com/api/sales";
+  public apiUser: string = 'https://finalprojectback-dcdr.onrender.com/api/user';
 
   public userName = localStorage.getItem('username');
 

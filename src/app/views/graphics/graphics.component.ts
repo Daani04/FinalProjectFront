@@ -39,8 +39,8 @@ export class GraphicsComponent implements OnInit {
 
   constructor(public service: RequestService) { }
 
-  public apiProductsUrl: string = "http://localhost:8000/api/data";
-  public apiSalesUrl: string = "http://localhost:8000/api/sales";
+  public apiProductsUrl: string = "https://finalprojectback-dcdr.onrender.com/api/data";
+  public apiSalesUrl: string = "https://finalprojectback-dcdr.onrender.com/api/sales";
 
   public products: ProductAllData [] = [];
   public productsSold: ProductSold [] = [];

@@ -16,7 +16,7 @@ export class ModalComponent {
     
   constructor(public service: RequestService, private http: HttpClient) { }
 
-  public userUrl: string = "http://localhost:8000/api/user";
+  public userUrl: string = "https://finalprojectback-dcdr.onrender.com/api/user";
 
   public allDataUser: User[] = [];
   public loginDataUser: User[] = [];

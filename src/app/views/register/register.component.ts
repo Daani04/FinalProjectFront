@@ -13,7 +13,7 @@ export class RegisterComponent {
 
   constructor(public service: RequestService, private router: Router) { }
 
-  public apiUrlUser: string = 'http://127.0.0.1:8000/api/user';
+  public apiUrlUser: string = 'https://finalprojectback-dcdr.onrender.com/api/user';
 
   reactiveForm = new FormGroup({
     userName: new FormControl(''),

@@ -27,7 +27,7 @@ export class LeafletMapComponent {
 
   constructor(public service: RequestService, private http: HttpClient) { }
 
-  public apiWarehouseUrl: string = "http://127.0.0.1:8000/api/warehouse";
+  public apiWarehouseUrl: string = "https://finalprojectback-dcdr.onrender.com/api/warehouse";
 
   public warehouses: Warehouse[] = [];
   public coordinates: number[][] = [];

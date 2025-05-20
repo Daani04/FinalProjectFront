@@ -21,7 +21,7 @@ export class ProductDataComponent {
   public productId: number = 0;
   public warehouseId: number = 0;
 
-  public apiProductsUrl: string = "http://localhost:8000/api/data";
+  public apiProductsUrl: string = "https://finalprojectback-dcdr.onrender.com/api/data";
 
   public products: any[] = [];
   public page: number = 0;

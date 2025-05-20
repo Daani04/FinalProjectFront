@@ -23,7 +23,7 @@ export class BarcodeScannerComponent implements OnInit {
 
   @Input() scannerAction: string = '';
 
-  public apiProductsUrl: string = "http://localhost:8000/api/data";
+  public apiProductsUrl: string = "https://finalprojectback-dcdr.onrender.com/api/data";
   public productsUser: any[] = [];
   public barcodeUserProducts: { [barcode: string]: any } = {};
 

@@ -14,7 +14,7 @@ export class LoginComponent {
 
   constructor(public service: RequestService, private router: Router) { }
 
-  public apiUrlUser: string = 'https://finalprojectback-dcdr.onrender.com/'; 
+  public apiUrlUser: string = 'https://finalprojectback-dcdr.onrender.com/api/user/login'; 
 
   public errorMessaje: string = "Usuario o contraseña incorrectos";
   public cont: number = 0;

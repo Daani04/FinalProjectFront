@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   constructor(public service: RequestService) { }
 
-  public apiProductsUrl: string = "http://localhost:8000/api/data";
+  public apiProductsUrl: string = "https://finalprojectback-dcdr.onrender.com/api/data";
 
   public notificationsList: { message: string, photo: string }[] = [];
   public ignoreNotifications: string[] = JSON.parse(localStorage.getItem('ignoreNotifications') || '[]');
