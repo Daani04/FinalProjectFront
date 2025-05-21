@@ -70,40 +70,53 @@ app-barcode-scanner {
 /*Media para que se vea bien en telefonos*/
 @media (max-width: 767px) {
 
-    #scanner {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    z-index: 9999; 
-}
-    
-  #checkCont {
+  app-barcode-scanner {
+    background-color: rgba(60, 60, 64, 0.9);
+    width: 90vw;
+    height: 60vh;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #scanner {
     position: fixed;
     top: 0;
     left: 0;
-    width: auto;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.5); 
-}
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
-    #checkCont > dotlottie-player {
-        background-color: rgba(60, 60, 64, 0.9);
-        width: auto;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+  #checkCont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    box-sizing: border-box;
+  }
 
+  #checkCont > dotlottie-player {
+    background-color: rgba(60, 60, 64, 0.9);
+    width: 90vw;
+    height: 60vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+  }
 }
