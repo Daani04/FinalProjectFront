@@ -381,21 +381,21 @@ form.soldProductsForm {
   .custom-row {
     flex-direction: column !important;
     display: flex !important;
-    align-items: center;
-    gap: 20px;
+    align-items: center !important;
+    gap: 20px !important;
   }
 
   .custom-row .col-md-5 {
-    width: 90% !important;
-    margin: 0 auto;
+    width: auto !important;
+    margin: 0 auto !important; 
   }
 
   #addAndRemove {
-    width: 60px;
-    height: 60px;
+    width: 60px !important;
+    height: 60px !important;
   }
 
   .custom-row h3 {
-    font-size: 1.2em;
+    font-size: 1.2em !important;
   }
 }
