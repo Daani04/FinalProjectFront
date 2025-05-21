@@ -89,8 +89,6 @@ export class DeepseekComponent {
   public startTour(): void {
     localStorage.setItem('chatIA', 'false');
     introJs().setOptions({
-      scrollToElement: true,
-      scrollTo: 'element',
       nextLabel: 'Siguiente',
       prevLabel: 'Anterior',
       doneLabel: 'Entendido',

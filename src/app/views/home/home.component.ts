@@ -239,6 +239,8 @@ export class HomeComponent {
     localStorage.setItem('chatIA', 'true');
 
     introJs().setOptions({
+      scrollToElement: true,
+      scrollTo: 'element',
       nextLabel: 'Siguiente',
       prevLabel: 'Anterior',
       doneLabel: 'Entendido',
