@@ -239,8 +239,6 @@ export class HomeComponent {
     localStorage.setItem('chatIA', 'true');
 
     introJs().setOptions({
-      scrollToElement: true,
-      scrollTo: 'element',
       nextLabel: 'Siguiente',
       prevLabel: 'Anterior',
       doneLabel: 'Entendido',
@@ -566,9 +564,11 @@ export class HomeComponent {
       this.showWelcomeScreen = false;
     }, 4000);
     
-    setTimeout(() => {
-      this.startTour();
-    }, 4500);
+    if (window.innerWidth >= 800) {
+      setTimeout(() => {
+        this.startTour();
+      }, 4500);
+    }
 
     this.modifyVisitStatus();
   }
