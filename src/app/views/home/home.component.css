@@ -375,3 +375,27 @@ form.soldProductsForm {
   }
 }
 
+
+/* Scanner en dispositivos moviles */
+@media (max-width: 767px) {
+  .custom-row {
+    flex-direction: column !important;
+    display: flex !important;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .custom-row .col-md-5 {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+
+  #addAndRemove {
+    width: 60px;
+    height: 60px;
+  }
+
+  .custom-row h3 {
+    font-size: 1.2em;
+  }
+}

@@ -564,11 +564,9 @@ export class HomeComponent {
       this.showWelcomeScreen = false;
     }, 4000);
     
-    if (window.innerWidth >= 800) {
-      setTimeout(() => {
-        this.startTour();
-      }, 4500);
-    }
+    setTimeout(() => {
+      this.startTour();
+    }, 4500);
 
     this.modifyVisitStatus();
   }
