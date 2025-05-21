@@ -69,27 +69,27 @@ app-barcode-scanner {
 
 /*Media para que se vea bien en telefonos*/
 @media (max-width: 767px) {
-  app-barcode-scanner {
-    width: auto !important;
-    height: auto !important;
-    padding: 10px !important;
-  }
+  #checkCont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
 
-  #checkCont > dotlottie-player {
-    width: auto !important;
-    height: auto !important;
-    padding: 10px !important;
-  }
+    #checkCont > dotlottie-player {
+        background-color: rgba(60, 60, 64, 0.9);
+        width: auto;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
 
-  #close {
-    font-size: 0.9rem !important;
-    padding: 8px 16px !important;
-    margin-top: 15px !important;
-  }
-
-  .noProductText {
-    font-size: 0.9rem !important;
-    text-align: center !important;
-    padding: 0 10px !important;
-  }
 }
