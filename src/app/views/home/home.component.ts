@@ -582,7 +582,7 @@ export class HomeComponent {
 
     let userId = parseInt(userIdString, 10);
 
-    let url = `http://127.0.0.1:8000/api/user/${userId}/update-visit`;
+    let url = `https://finalprojectback-dcdr.onrender.com/api/user/${userId}/update-visit`;
 
     const visitPage: User = {
       isFirstVisit : false, 

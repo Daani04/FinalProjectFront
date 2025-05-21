@@ -25,7 +25,7 @@ export class HeaderComponent {
 
   /*Comentado para no gastar saldo de la API*/
   ngOnInit() {
-    //this.getProducts();
+    this.getProducts();
   }
 
   public changeVisivility(): void {
